@@ -1,0 +1,31 @@
+package recordsystem; 
+ 
+public class AppMain { 
+ 
+    public static void main(String[] args) { 
+        ScoreWriter writer = new ScoreWriter(); 
+ 
+        Learner l1 = new Learner("Karthik", 11, 83); 
+        Learner l2 = new Learner("Virat", 12, 91); 
+        Learner l3 = new Learner("Rohit", 13, 78); 
+ 
+        RecordTask t1 = new RecordTask(l1, writer); 
+        RecordTask t2 = new RecordTask(l2, writer); 
+        RecordTask t3 = new RecordTask(l3, writer); 
+ 
+        t1.start(); 
+        t2.start(); 
+        t3.start(); 
+ 
+        try { 
+            t1.join(); 
+            t2.join(); 
+            t3.join(); 
+        } catch (InterruptedException e) { 
+            System.out.println("Thread process interrupted."); 
+        } 
+ 
+        System.out.println("All learners' records have been successfully 
+written!"); 
+    } 
+} 
