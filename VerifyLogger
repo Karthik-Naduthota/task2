@@ -1,0 +1,19 @@
+package recordsystem; 
+ 
+import static org.junit.jupiter.api.Assertions.*; 
+import org.junit.jupiter.api.Test; 
+import java.io.File; 
+ 
+class VerifyLogger { 
+ 
+    @Test 
+    void testRecordFileCreation() { 
+        ScoreWriter writer = new ScoreWriter(); 
+        Learner testLearner = new Learner("TestUser", 500, 88); 
+        writer.saveRecord(testLearner); 
+ 
+        File file = new File("exam_records.csv"); 
+assertTrue(file.exists(), "Record file should exist after logging 
+learner data"); 
+} 
+}
