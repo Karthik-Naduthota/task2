@@ -1,0 +1,20 @@
+package recordsystem; 
+ 
+public class Learner { 
+   private String studentName; 
+   private int rollNumber; 
+   private int marks; 
+ 
+    public Learner(String studentName, int rollNumber, int marks) { 
+       this.studentName = studentName; 
+        this.rollNumber = rollNumber;        this.marks = marks; 
+    } 
+ 
+    public String formatData() { 
+        return studentName + "," + rollNumber + "," + marks; 
+    } 
+ 
+    public String getStudentName() { 
+        return studentName; 
+    } 
+}
