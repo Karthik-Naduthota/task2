@@ -1,0 +1,35 @@
+package recordsystem; 
+ 
+import java.io.FileWriter; 
+import java.io.IOException; 
+ 
+public class ScoreWriter { 
+ 
+    // synchronized method ensures safe write operation for concurrent 
+threads 
+    public synchronized void saveRecord(Learner learner) { 
+        try (FileWriter writer = new FileWriter("exam_records.csv", true)) { 
+            writer.write(learner.formatData() + System.lineSeparator()); 
+            System.out.println("Entry saved for student -> " + 
+learner.getStudentName()); 
+        } catch (IOException ex) { 
+            System.out.println(" Unable to log data: " + ex.getMessage()); 
+        } 
+    } 
+} 
+package recordsystem; 
+ 
+public class RecordTask extends Thread { 
+    private Learner learner; 
+    private ScoreWriter scoreWriter; 
+ 
+    public RecordTask(Learner learner, ScoreWriter scoreWriter) { 
+        this.learner = learner; 
+        this.scoreWriter = scoreWriter; 
+    } 
+ 
+    @Override 
+    public void run() { 
+        scoreWriter.saveRecord(learner); 
+    } 
+} 
